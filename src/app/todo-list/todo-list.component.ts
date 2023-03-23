@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 interface Todo {
   task: string;
-  is_complete: boolean;
-  added_on: Date;
+  isComplete: boolean;
+  addedOn: Date;
 }
 
 @Component({
@@ -13,19 +14,27 @@ interface Todo {
 })
 
 export class TodoListComponent {
+  dataSource = new MatTableDataSource<Todo>();
   newTodo: string = '';
 
   todos: Todo[] = [
-    { task: 'learn golang', is_complete: false, added_on: new Date() },
-    { task: 'study', is_complete: false, added_on: new Date() },
-    { task: 'learn golang', is_complete: false, added_on: new Date() },
+    { task: 'learn golang', isComplete: false, addedOn: new Date() },
+    { task: 'study', isComplete: false, addedOn: new Date() },
+    { task: 'learn golang', isComplete: false, addedOn: new Date() },
   ];
+
+  ngOnInit() {
+    this.dataSource.data = this.todos;
+  }
+
+  displayedColumns : string[] = ["isComplete", "task", "addedOn"];
 
   addTodo() {
     if (this.newTodo.trim().length === 0) {
       return;
     }
-    this.todos.push({ task: this.newTodo, is_complete: false, added_on: new Date() });
+    this.todos.push({ task: this.newTodo, isComplete: false, addedOn: new Date() });
+    this.dataSource.data = this.todos;
     this.newTodo = '';
   }
 }
