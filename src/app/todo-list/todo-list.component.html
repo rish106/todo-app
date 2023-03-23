@@ -1,0 +1,10 @@
+<ul>
+    <li *ngFor="let todo of todos">
+        <input type="checkbox" [(ngModel)]="todo.is_complete">
+        {{ todo.task }}    {{ todo.added_on.toLocaleString() }}
+    </li>
+    <form (ngSubmit)="addTodo()">
+      <input type="text" [(ngModel)]="newTodo" placeholder="Add a new todo..." name="first">
+      <button type="submit">Add</button>
+    </form>
+</ul>
