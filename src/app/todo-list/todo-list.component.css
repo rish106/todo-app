@@ -1,3 +1,11 @@
 table {
   width: 100%;
+
+  .select-row:hover {
+    cursor: pointer;
+  }
+}
+
+mat-form-field {
+  width: 40vw !important;
 }

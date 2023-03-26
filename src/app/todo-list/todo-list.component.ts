@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, ViewChild } from '@angular/core';
+import { MatTable } from '@angular/material/table';
 
 interface Todo {
   task: string;
@@ -14,7 +14,6 @@ interface Todo {
 })
 
 export class TodoListComponent {
-  dataSource = new MatTableDataSource<Todo>();
   newTodo: string = '';
 
   todos: Todo[] = [
@@ -23,18 +22,15 @@ export class TodoListComponent {
     { task: 'learn golang', isComplete: false, addedOn: new Date() },
   ];
 
-  ngOnInit() {
-    this.dataSource.data = this.todos;
-  }
-
   displayedColumns : string[] = ["isComplete", "task", "addedOn"];
+  @ViewChild(MatTable) table!: MatTable<Todo>;
 
   addTodo() {
     if (this.newTodo.trim().length === 0) {
       return;
     }
     this.todos.push({ task: this.newTodo, isComplete: false, addedOn: new Date() });
-    this.dataSource.data = this.todos;
+    this.table.renderRows();
     this.newTodo = '';
   }
 }

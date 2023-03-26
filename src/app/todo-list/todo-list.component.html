@@ -1,37 +1,42 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+<div class="container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="24px" fxFlex>
+  <table mat-table [dataSource]="todos" class="mat-elevation-z2">
 
-  <!-- is complete column -->
-  <ng-container matColumnDef="isComplete">
-    <th mat-header-cell *matHeaderCellDef> Complete? </th>
-    <td mat-cell *matCellDef="let todo">
-      <mat-checkbox [(ngModel)]="todo.isComplete">
-      </mat-checkbox>
-    </td>
-  </ng-container>
+    <!-- is complete column -->
+    <ng-container matColumnDef="isComplete">
+      <th mat-header-cell *matHeaderCellDef> Complete? </th>
+      <td mat-cell *matCellDef="let todo">
+        <mat-checkbox [(ngModel)]="todo.isComplete">
+        </mat-checkbox>
+      </td>
+    </ng-container>
 
-  <!-- Task name column -->
-  <ng-container matColumnDef="task">
-    <th mat-header-cell *matHeaderCellDef> Task Name </th>
-    <td mat-cell *matCellDef="let todo">{{ todo.task }}</td>
-  </ng-container>
+    <!-- Task name column -->
+    <ng-container matColumnDef="task">
+      <th mat-header-cell *matHeaderCellDef> Task Name </th>
+      <td mat-cell *matCellDef="let todo">{{ todo.task }}</td>
+    </ng-container>
 
-  <!-- Added on column -->
-  <ng-container matColumnDef="addedOn">
-    <th mat-header-cell *matHeaderCellDef> Added on </th>
-    <td mat-cell *matCellDef="let todo">{{ todo.addedOn.toLocaleString() }}</td>
-  </ng-container>
+    <!-- Added on column -->
+    <ng-container matColumnDef="addedOn">
+      <th mat-header-cell *matHeaderCellDef> Added on </th>
+      <td mat-cell *matCellDef="let todo">{{ todo.addedOn.toLocaleString() }}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-</table>
+  </table>
 
-<form (ngSubmit)="addTodo()">
+  <form (ngSubmit)="addTodo()">
 
-  <mat-form-field appearance="outline">
-    <mat-label>New todo</mat-label>
-    <input matInput [(ngModel)]="newTodo" placeholder="Add a new todo..." name="first">
-    <button type="submit" mat-raised-button color="primary">Add</button>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>New todo</mat-label>
+      <div class="container" fxLayout="row">
+        <input matInput [(ngModel)]="newTodo" placeholder="Add a new todo..." name="first">
+        <button type="submit" mat-raised-button color="primary">Add</button>
+      </div>
+    </mat-form-field>
 
-</form>
+  </form>
+
+</div>
