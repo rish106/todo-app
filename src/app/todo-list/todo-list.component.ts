@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 
 interface Todo {
-  task: string;
+  title: string;
   isComplete: boolean;
   addedOn: Date;
 }
@@ -14,23 +14,23 @@ interface Todo {
 })
 
 export class TodoListComponent {
-  newTodo: string = '';
+  newTodoTitle: string = '';
 
   todos: Todo[] = [
-    { task: 'learn golang', isComplete: false, addedOn: new Date() },
-    { task: 'study', isComplete: false, addedOn: new Date() },
-    { task: 'learn golang', isComplete: false, addedOn: new Date() },
+    { title: 'learn golang', isComplete: false, addedOn: new Date() },
+    { title: 'study', isComplete: false, addedOn: new Date() },
+    { title: 'productive task', isComplete: false, addedOn: new Date() },
   ];
 
-  displayedColumns : string[] = ["isComplete", "task", "addedOn"];
+  displayedColumns : string[] = ["isComplete", "title", "addedOn"];
   @ViewChild(MatTable) table!: MatTable<Todo>;
 
   addTodo() {
-    if (this.newTodo.trim().length === 0) {
+    if (this.newTodoTitle.trim().length === 0) {
       return;
     }
-    this.todos.push({ task: this.newTodo, isComplete: false, addedOn: new Date() });
+    this.todos.push({ title: this.newTodoTitle, isComplete: false, addedOn: new Date() });
     this.table.renderRows();
-    this.newTodo = '';
+    this.newTodoTitle = '';
   }
 }
