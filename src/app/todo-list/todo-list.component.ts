@@ -28,7 +28,7 @@ export class TodoListComponent {
   @ViewChild(MatTable) table!: MatTable<Todo>;
 
   addTodo() {
-    if (this.newTodoTitle.trim().length === 0) {
+    if (this.newTodoTitle.trim().length === 0 || !this.newTodoDueDate) {
       return;
     }
     this.todos.push({ title: this.newTodoTitle, isComplete: false, dueDate: this.newTodoDueDate });
